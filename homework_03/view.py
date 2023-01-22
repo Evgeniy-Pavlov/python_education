@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Response
+from fastapi import APIRouter, Response, status
 import json
 
 
@@ -12,4 +12,5 @@ def ping():
     статус ответа 200
     тело ответа — JSON объект {"message": "pong"}
     """
-    return Response(content=json.dumps({"message": "pong"}), status_code=200, media_type="application/json")
+    return Response(content=json.dumps({"message": "pong"}),
+                    status_code=status.HTTP_200_OK, media_type="application/json")
