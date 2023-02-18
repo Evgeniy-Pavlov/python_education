@@ -38,7 +38,7 @@ class User(Base_declarative):
     email = Column(String(40), unique=True, nullable=False)
     date_create = Column(DateTime, default=datetime.datetime.now())
 
-    post = relationship('post', back_populates='user')
+    post = relationship('Post', back_populates='user')
 
 
 class Post(Base_declarative):
@@ -46,7 +46,7 @@ class Post(Base_declarative):
     title = Column(String(200), unique=False, nullable=False)
     body = Column(Text, unique=False, nullable=False)
 
-    user = relationship('user', back_populates='post')
+    user = relationship('User', back_populates='post')
 
 
 async def create_tables():
