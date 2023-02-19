@@ -29,7 +29,7 @@
               users_data: List[dict]
               posts_data: List[dict]
               users_data, posts_data = await asyncio.gather(
-                  fetch_users_data(),
+                  fetch_posts_data(),
                   fetch_posts_data(),
               )
               ```
