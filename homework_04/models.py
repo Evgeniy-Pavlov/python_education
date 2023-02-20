@@ -17,7 +17,7 @@ from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
 PG_CONN_URI = os.environ.get("SQLALCHEMY_PG_CONN_URI") or \
               "postgresql+asyncpg://username:passwd!@localhost:5432/postgres"
 
-async_engine: AsyncEngine = create_async_engine(url=PG_CONN_URI, echo=True)
+async_engine: AsyncEngine = create_async_engine(url=PG_CONN_URI, echo=False)
 
 
 class Base:
@@ -38,7 +38,7 @@ class User(Base_declarative):
     email = Column(String(40), unique=True, nullable=False)
     date_create = Column(DateTime, default=datetime.datetime.now())
 
-    post = relationship('Post', back_populates='user')
+    posts = relationship('Post', back_populates='user')
 
 
 class Post(Base_declarative):
@@ -46,7 +46,7 @@ class Post(Base_declarative):
     title = Column(String(200), unique=False, nullable=False)
     body = Column(Text, unique=False, nullable=False)
 
-    user = relationship('User', back_populates='post')
+    user = relationship('User', back_populates='posts')
 
 
 async def create_tables():

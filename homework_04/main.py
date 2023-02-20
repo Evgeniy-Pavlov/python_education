@@ -13,13 +13,9 @@
 - закрытие соединения с БД
 """
 import asyncio
-from models import create_tables, User, Post, PG_CONN_URI
+from models import create_tables, User, Post, Session
 from jsonplaceholder_requests import fetch_users_data, fetch_posts_data, USERS_DATA_URL, POSTS_DATA_URL
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, AsyncEngine
-from sqlalchemy.orm import sessionmaker
-
-async_engine: AsyncEngine = create_async_engine(url=PG_CONN_URI, echo=True)
-Session = sessionmaker(async_engine, class_=AsyncSession, expire_on_commit=False)
+from sqlalchemy.ext.asyncio import AsyncSession
 
 
 async def create_user(session: AsyncSession, name: str, username: str, email: str) -> User:
