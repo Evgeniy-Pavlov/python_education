@@ -12,17 +12,18 @@
 """
 from flask import Flask, request, render_template, flash
 from datetime import datetime
-
 app = Flask(__name__)
 
 
 @app.get('/')
 def index_view():
-    return {'data': f'{datetime.now()}'}
+    return render_template('index.html')
+
 
 @app.get('/about/')
 def about_view():
-    return {'data': 'Hello'}
+    return render_template('about.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
