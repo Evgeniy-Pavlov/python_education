@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    Homework_06
+{% endblock  %}
+{% block body %}
+<div class="container">
+    <h3 class="display-6">Домашнее задание №6 Взаимодействие между контейнерами</h3>
+    <ol class="list-group">
+        <li class="list-group-item">
+            <p class="lead lh-sm">создайте docker-compose файл, настройте там связь базы данных и веб-приложения</p>
+        </li>
+        <li class="list-group-item">
+            <p class="lead lh-sm">добавьте в свой проект модели. Это могут быть те же модели, что были использованы для сохранения данных с открытого API, это может быть и что-то новое</p>
+        </li>
+        <li class="list-group-item">
+            <p class="lead lh-sm">добавьте возможность создавать новые записи</p>
+        </li>
+        <li class="list-group-item">
+            <p class="lead lh-sm">создайте страницу, на которой эти записи выводятся</p>
+        </li>
+        <li class="list-group-item">
+            <p class="lead lh-sm">база данных должна быть в отдельном контейнере</p>
+        </li>
+        <li class="list-group-item">
+            <p class="lead lh-sm">Flask приложение должно запускаться не в debug режиме, а в production-ready (uwsgi/gunicorn, nginx, Flask)</p>
+        </li>
+    </ol>
+</div>
+{% endblock  %}

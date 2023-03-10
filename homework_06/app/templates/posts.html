@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    Posts
+{% endblock  %}
+{% block body %}
+{% for i in range(100) %}
+    <ul class="list-group">
+        <li class="list-group-item">{{i}}</li>
+    </ul>
+{% endfor %}
+{% endblock  %}

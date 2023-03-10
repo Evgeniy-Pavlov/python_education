@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    Users
+{% endblock  %}
+{% block body %}
+{% for i in range(10) %}
+    <ul class="list-group">
+        <li class="list-group-item">{{i}}</li>
+    </ul>
+{% endfor %}
+{% endblock  %}
