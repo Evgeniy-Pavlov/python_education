@@ -3,9 +3,13 @@
     Posts
 {% endblock  %}
 {% block body %}
-{% for i in range(100) %}
+<div class="container">
+<h3 class="display-6">All posts</h3>
     <ul class="list-group">
-        <li class="list-group-item">{{i}}</li>
+        {% for i in range(15) %}
+        <li class="list-group-item"><p class="lead lh-sm">{{i}}</p></li>
+        {% endfor %}
     </ul>
-{% endfor %}
+</div>
+
 {% endblock  %}

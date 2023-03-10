@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
 from jsonplaceholder.jsonplaceholder_requests import fetch_posts_data, fetch_users_data
 
+
 app = Flask(__name__)
 
 

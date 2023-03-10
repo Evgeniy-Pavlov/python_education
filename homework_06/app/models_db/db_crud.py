@@ -1,7 +1,5 @@
 import asyncio
-from homework_06.app.jsonplaceholder.jsonplaceholder_requests import fetch_users_data, \
-    fetch_posts_data, USERS_DATA_URL, POSTS_DATA_URL
-from models import create_tables, User, Post, Session
+from models import User, Post, Session
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
@@ -34,18 +32,25 @@ async def read_user(session: AsyncSession) -> list[User]:
     return all_users
 
 
+# async def async_main():
+#     await create_tables()
+#     result_users, result_posts = await asyncio.gather(fetch_users_data(USERS_DATA_URL),
+#                                                       fetch_posts_data(POSTS_DATA_URL))
+#     async with Session() as session:
+#         await create_user(session, result_users)
+#     async with Session() as session:
+#         await create_post(session, result_posts)
+
 async def async_main():
-    await create_tables()
-    result_users, result_posts = await asyncio.gather(fetch_users_data(USERS_DATA_URL),
-                                                      fetch_posts_data(POSTS_DATA_URL))
     async with Session() as session:
-        await create_user(session, result_users)
-    async with Session() as session:
-        await create_post(session, result_posts)
+        result = await read_user(session)
+    
+    for i in result:
+        print(i.username, i.date_create, i.email)
 
 
 def main():
-    asyncio.get_event_loop().run_until_complete(async_main())
+   result = asyncio.get_event_loop().run_until_complete(async_main())
 
 
 if __name__ == "__main__":
