@@ -1,11 +1,20 @@
+import os
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, render_template, flash
 from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
-from jsonplaceholder.jsonplaceholder_requests import fetch_posts_data, fetch_users_data
+from models import db
 
+
+
+config_name = os.getenv("CONFIG_NAME", "DevelopmentConfig")
 
 app = Flask(__name__)
+app.config.from_object(f"config.{config_name}")
+db.init_app(app)
 
+with app.app_context():
+    db.create_all()
 
 @app.get('/')
 def index_view():
@@ -22,7 +31,6 @@ def posts_view():
     return render_template('posts.html')
 
 
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
