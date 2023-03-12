@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
 from models import db, User, Post
 from flask_sqlalchemy.query import Query
+from sqlalchemy.orm import joinedload
 from crud import create_post_from_jsonplaceholder, create_user_from_jsonplaceholder
 
 
@@ -34,7 +35,7 @@ def users_view():
 
 @app.get('/posts')
 def posts_view():
-    posts = Post.query.order_by(Post.id).all()
+    posts = Post.query.join(User, User.id == Post.user_id).add_columns(User.name, Post.title, Post.body).all()
     return render_template('posts.html', posts=posts)
 
 
