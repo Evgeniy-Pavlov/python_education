@@ -3,6 +3,7 @@ from .database import db
 from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from typing import TYPE_CHECKING, Type
+from flask_sqlalchemy.query import Query
 
 
 
@@ -16,5 +17,4 @@ class User(db.Model):
 
 if TYPE_CHECKING:
     from flask_sqlalchemy.model import Model
-
-    Product: Type[Model]
+    User: Type[Model]

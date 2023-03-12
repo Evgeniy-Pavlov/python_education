@@ -13,5 +13,4 @@ class Post(db.Model):
 
 if TYPE_CHECKING:
     from flask_sqlalchemy.model import Model
-
-    Product: Type[Model]
+    Post: Type[Model]

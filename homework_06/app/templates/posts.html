@@ -6,8 +6,8 @@
 <div class="container">
 <h3 class="display-6">All posts</h3>
     <ul class="list-group">
-        {% for i in range(15) %}
-        <li class="list-group-item"><p class="lead lh-sm">{{i}}</p></li>
+        {% for post in posts %}
+        <li class="list-group-item"><p class="lead lh-sm">{{post.user_id}}--{{post.title}}</p></li>
         {% endfor %}
     </ul>
 </div>
