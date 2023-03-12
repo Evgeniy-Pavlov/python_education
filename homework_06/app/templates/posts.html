@@ -7,7 +7,13 @@
 <h3 class="display-6">All posts</h3>
     <ul class="list-group">
         {% for post in posts %}
-        <li class="list-group-item"><p class="lead lh-sm"><b>{{post.name}}---{{post.title}}</b></p><p class="lh-sm">{{post.body}}</p></li>
+        <li class="list-group-item">
+            <div class="card border-info mb-3">
+                <div class="card-header text-primary mb-3">{{post.name}}</div>
+                <div class="card-body ">
+                  <h5 class="card-title text-bg-light mb-3">{{post.title}}</h5>
+                  <p class="card-text text-bg-info mb-3">{{post.body}}</p>
+                </div>
         {% endfor %}
     </ul>
 </div>

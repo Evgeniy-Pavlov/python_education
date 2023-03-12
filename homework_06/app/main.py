@@ -6,7 +6,7 @@ from flask_wtf import CSRFProtect
 from models import db, User, Post
 from flask_sqlalchemy.query import Query
 from sqlalchemy.orm import joinedload
-from crud import create_post_from_jsonplaceholder, create_user_from_jsonplaceholder
+from crud import create_post_from_jsonplaceholder, create_user_from_jsonplaceholder, read_all_posts_with_authors, read_all_users
 
 
 config_name = os.getenv("CONFIG_NAME", "DevelopmentConfig")
@@ -29,13 +29,13 @@ def index_view():
 
 @app.get('/users')
 def users_view():
-    users = User.query.order_by(User.id).all()
+    users = read_all_users()
     return render_template('users.html', users=users)
 
 
 @app.get('/posts')
 def posts_view():
-    posts = Post.query.join(User, User.id == Post.user_id).add_columns(User.name, Post.title, Post.body).all()
+    posts = read_all_posts_with_authors()
     return render_template('posts.html', posts=posts)
 
 

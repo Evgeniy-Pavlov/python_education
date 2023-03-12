@@ -18,6 +18,16 @@ def create_post_from_jsonplaceholder():
     return posts_list    
 
 
+def read_all_posts_with_authors():
+    result_posts = Post.query.join(User, User.id == Post.user_id).add_columns(User.name, Post.title, Post.body).order_by(Post.title).all()
+    return result_posts
+
+
+def read_all_users():
+    result_users = User.query.order_by(User.id).all()
+    return result_users
+
+
 if __name__== '__main__':
     create_user_from_jsonplaceholder()
     create_post_from_jsonplaceholder()
