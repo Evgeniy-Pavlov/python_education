@@ -12,9 +12,12 @@ config_name = os.getenv("CONFIG_NAME", "DevelopmentConfig")
 app = Flask(__name__)
 app.config.from_object(f"config.{config_name}")
 db.init_app(app)
+migrate = Migrate(app=app, db=db)
 
-with app.app_context():
-    db.create_all()
+@app.cli.command('create-all')
+def table_create_all():
+    with app.app_context():
+        db.create_all()
 
 @app.get('/')
 def index_view():
