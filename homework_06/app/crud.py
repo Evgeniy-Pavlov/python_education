@@ -22,6 +22,26 @@ def create_post_from_jsonplaceholder():
     return posts_list    
 
 
+def create_user(user):
+    username_in_database = [user.get('username') for user in User.query.order_by(User.id).all()]
+    if user.name not in username_in_database:
+        db.session.add(user)
+        db.session.commit()
+        return user
+    else:
+        return None
+
+
+def create_post(post):
+    userid_in_database = User.query.filter(User.username.ilike(post.username)).all()
+    if not userid_in_database:
+        db.session.add(Post(title=post.title, body=post.body, user_id=userid_in_database.id))
+        db.session.commit()
+        return post
+    else:
+        return None    
+
+
 def read_all_posts_with_authors():
     result_posts = Post.query.join(User, User.id == Post.user_id).add_columns(User.name, Post.title, Post.body).order_by(Post.title).all()
     return result_posts
