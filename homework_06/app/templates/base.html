@@ -10,8 +10,6 @@
     {% endblock %}</title>
 </head>
 
-
-
 <body class="bg-light text-dark">
   {% block navbar_base %}
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,6 +31,12 @@
     </div>
   </nav>
   {% endblock  %}
+  {% block button %}
+  <div class="position-absolute top-40 start-50 translate-middle">
+    <a class="btn btn-primary btn-success" href="{{ url_for('user_create_form') }}">Create a new user</a>
+    <a class="btn btn-primary btn-warning" href="{{ url_for('post_create_form') }}">Create a new post</a>
+  </div>
+  {% endblock %}
   {% block body %}
   {% endblock %}
 </body>

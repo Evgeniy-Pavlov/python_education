@@ -30,6 +30,7 @@ def index_view():
 @app.get('/users')
 def users_view():
     users = read_all_users()
+    flash(f'You read all users', category='warning')
     return render_template('users.html', users=users)
 
 
@@ -38,6 +39,14 @@ def posts_view():
     posts = read_all_posts_with_authors()
     return render_template('posts.html', posts=posts)
 
+@app.get('/CreateUser')
+def user_create_form():
+    return render_template('create_user.html')
+
+
+@app.get('/CreatePost')
+def post_create_form():
+    return render_template('create_post.html')
 
 if __name__ == '__main__':
     app.run()
