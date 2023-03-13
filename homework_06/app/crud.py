@@ -15,7 +15,8 @@ def create_user_from_jsonplaceholder():
 def create_post_from_jsonplaceholder():
     posts_data = fetch_posts_data(POSTS_DATA_URL)
     userid_in_database = [user.get('id') for user in User.query.order_by(User.id).all()]
-    posts_list: list[dict] = [Post(user_id=i.get('userId'), title=i.get('title'), body=i.get('body')) for i in posts_data if i.get('userId') not in userid_in_database]
+    posts_list: list[dict] = [Post(user_id=i.get('userId'), title=i.get('title'), body=i.get('body'))
+                               for i in posts_data if i.get('userId') not in userid_in_database]
     db.session.add_all(posts_list)
     db.session.commit()
     return posts_list    
