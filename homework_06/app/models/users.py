@@ -1,9 +1,9 @@
 import datetime
 from .database import db
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from typing import TYPE_CHECKING, Type
-from flask_sqlalchemy.query import Query
+
 
 
 

@@ -3,14 +3,12 @@ from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
 from models import db, User, Post
-from flask_sqlalchemy.query import Query
 from crud import create_post_from_jsonplaceholder, create_user_from_jsonplaceholder, \
     read_all_posts_with_authors, read_all_users, create_post, create_user
 from forms import UserForm, PostForm
 from http import HTTPStatus
 
-config_name = os.getenv("CONFIG_NAME", "DevelopmentConfig")
-
+config_name = os.getenv("CONFIG_NAME", "ProductionConfig")
 app = Flask(__name__)
 app.config.from_object(f"config.{config_name}")
 db.init_app(app)
@@ -51,7 +49,6 @@ def user_create_form():
             render_template("create_user.html", form=form),
             HTTPStatus.BAD_REQUEST,
         )
-    
     username_in_database = User.query.filter(User.username.ilike(form.data['username'])).all()
     if not username_in_database:
         create_user(User(name=form.data['name'], username=form.data['username'], email=form.data['email']))
