@@ -32,7 +32,6 @@ def index_view():
 @app.get('/users')
 def users_view():
     users = read_all_users()
-    flash(f'You read all users', category='warning')
     return render_template('users.html', users=users)
 
 

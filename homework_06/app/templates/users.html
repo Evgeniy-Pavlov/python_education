@@ -7,7 +7,7 @@
     <h3 class="display-6">All users</h3>
         <ol class="list-group">
             {% for user in users %}
-            <li class="list-group-item"><p class="lead lh-sm">{{user.name}}</p></li>
+            <li class="list-group-item"><p class="lead lh-sm">Name: {{user.name}}, Username: {{user.username}}</p></li>
             {% endfor %}
         </ol>
     </div>
