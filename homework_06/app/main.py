@@ -1,11 +1,9 @@
 import os
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, render_template, flash, redirect, url_for
 from flask_migrate import Migrate
 from flask_wtf import CSRFProtect
 from models import db, User, Post
 from flask_sqlalchemy.query import Query
-from sqlalchemy.orm import joinedload
 from crud import create_post_from_jsonplaceholder, create_user_from_jsonplaceholder, \
     read_all_posts_with_authors, read_all_users, create_post, create_user
 from forms import UserForm, PostForm
@@ -62,7 +60,7 @@ def user_create_form():
         return redirect(url_for("index_view"))
     else:
         flash(f"User already exists!", category="warning")
-        return redirect(url_for("index_view"))
+        return redirect(url_for("users_view"))
 
 
 @app.route('/CreatePost', methods=["GET", "POST"])
@@ -80,7 +78,21 @@ def post_create_form():
         post = Post(title=form.data['title'], body=form.data['body'], user_id=userid_in_database[0].id)
         create_post(post)
         flash(f"Post was created!", category="success")
-        return redirect(url_for("index_view"))    
+        return redirect(url_for("posts_view"))    
+
+
+@app.get('/getRecordsUsers')
+def get_records_users():
+    create_user_from_jsonplaceholder()
+    flash(f"User records retrieved!", category="success")
+    return redirect(url_for("users_view"))
+
+
+@app.get('/getRecordsPosts')
+def get_records_posts():
+    create_post_from_jsonplaceholder()
+    flash(f"Post records retrieved!", category="success")
+    return redirect(url_for("posts_view"))
 
 
 if __name__ == '__main__':
