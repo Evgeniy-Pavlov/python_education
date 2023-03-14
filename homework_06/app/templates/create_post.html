@@ -4,7 +4,7 @@
 <div class="container mt-5">
 <h3 class="display-6 mt-5">Форма создания пользователя</h3>
 <form method="post" enctype="multipart/form-data">
-    {{ form.scrf_token }} 
+    {{ form.csrf_token }} 
     {{ form.username.label (class="form-label") }} 
     {{ form.username (class="form-control") }}
     {{ form.title.label (class="form-label") }}
