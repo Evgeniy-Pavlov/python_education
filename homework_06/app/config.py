@@ -14,6 +14,7 @@ class Config(object):
 
 class ProductionConfig(Config):
     ENV = "production"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://username:passwd!@localhost:5432/postgres"
 
 
 class DevelopmentConfig(Config):
