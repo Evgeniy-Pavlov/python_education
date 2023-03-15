@@ -8,13 +8,13 @@ class Config(object):
     ENV = ""
     SECRET_KEY = ''.join(secrets.choice(i) 
                          for i in [x + ascii_lowercase[int(x)] for x in str(datetime.datetime.now()) if x.isdigit()])
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://username:passwd!@localhost:5432/postgres"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://username:passwd!@localhost:5432/blog"
     SQLALCHEMY_ECHO = False
 
 
 class ProductionConfig(Config):
     ENV = "production"
-    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://username:passwd!@localhost:5432/postgres"
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://username:passwd!@localhost:5432/blog"
 
 
 class DevelopmentConfig(Config):
