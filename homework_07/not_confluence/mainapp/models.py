@@ -16,7 +16,7 @@ class Project(models.Model):
     user_create = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     date_create = models.DateTimeField(null=True) 
     user_update = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='user_projects')
-    date_update = models.DateTimeField(null=True)
+    date_update = models.DateTimeField(null=True, blank=True)
 
 
 class Article(models.Model):
@@ -26,7 +26,7 @@ class Article(models.Model):
     project = models.ForeignKey(Project, on_delete=models.PROTECT, null=False)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     user_update = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='user_articles')
-    date_update = models.DateTimeField(null=True)
+    date_update = models.DateTimeField(null=True, blank=True)
 
 
 
