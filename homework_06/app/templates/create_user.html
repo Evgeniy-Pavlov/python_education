@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container mt-5">
+<h3 class="display-6 mt-5">Форма создания пользователя</h3>
+<form action="/CreateUser" method="post" enctype="multipart/form-data">
+    {{ form.csrf_token }} 
+    {{ form.name.label (class="form-label") }}
+    {{ form.name (class="form-control") }}
+    {{ form.username.label (class="form-label") }} 
+    {{ form.username (class="form-control") }}
+    {{ form.email.label (class="form-label") }}
+    {{ form.email (class="form-control") }}
+    <div class="mt-5">
+        <button id="button-create" class="btn btn-primary" type="submit">Create</button>
+    </div>
+</form>
+</div>
+{% endblock %}
